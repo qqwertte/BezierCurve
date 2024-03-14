@@ -1,0 +1,68 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* вимикнення прокрутки сторінки */
+}
+
+.canvas-container{
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    width: 90%;
+    height: 100%;
+}
+
+#canvas{
+    display: block; /* встановлення як блочний елемент */
+    width: 96%;
+    height: 100%;
+}
+
+.menu-container{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 100%;
+    background-color: rgb(123, 199, 76);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    text-align: center;
+    z-index: auto;
+}
+.menu-functions-form ul {
+    list-style-type: none; /* Забирає крапку перед елементами списку */
+    padding: 0;
+}
+ul li:not(:first-child) {
+    margin-top: 40px; /* встановлює відступ зверху на 20px для всіх <li> елементів, крім першого */
+}
+
+
+.menu-functions-form label {
+    display: block; /* Показує підписи в новому рядку */
+    margin-bottom: 5px;
+}
+
+.menu-functions-form input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box; /* Розрахунок ширини з урахуванням внутрішніх падінь */
+}
+
+input[type="number"] {
+    width: 80%; /* встановлює фіксовану ширину для всіх елементів <input> з type="number" */
+}
+
+.build-button1,.build-button2,.display-dots-button,.Calculate-value-of-polynoms{
+    width: 70%;
+    height: 2em;
+    margin-top: 0.5em;
+    color: #25b18a;
+    background-color: white;
+}

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab 2 KG</title>
+    <link rel="stylesheet" type="text/css" href="Lab%202%20KG.css">
+</head>
+<body>
+
+
+<div>
+    <div class="canvas-container">
+        <canvas id="canvas" width="" height=""></canvas>
+        <script>
+
+            let gridSize = 20;
+
+            let canvas = document.getElementById('canvas');
+            let ctx = canvas.getContext("2d");
+
+            // Отримати розміри контейнера полотна
+            let canvasContainer = document.querySelector('.canvas-container');
+            let containerWidth = canvasContainer.clientWidth;
+            let containerHeight = canvasContainer.clientHeight;
+
+            // Встановити розміри полотна на розміри його контейнера
+            canvas.width = containerWidth;
+            canvas.height = containerHeight;
+
+            let num_lines_x = Math.floor(containerHeight / gridSize);
+            let num_lines_y = Math.floor(containerWidth / gridSize);
+
+            for (let i = 0; i <= num_lines_x; i++) {
+                ctx.beginPath();
+                ctx.lineWidth = 1;
+
+                // If line represents X-axis draw in different color
+                if (i === Math.floor(num_lines_x / 2)) {
+                    ctx.strokeStyle = "#000000";
+                } else {
+                    ctx.strokeStyle = "#e9e9e9";
+                }
+
+                if (i === num_lines_x) {
+                    ctx.moveTo(0, gridSize * i);
+                    ctx.lineTo(containerWidth, gridSize * i);
+                } else {
+                    ctx.moveTo(0, gridSize * i + 0.5);
+                    ctx.lineTo(containerWidth, gridSize * i + 0.5);
+                }
+                ctx.stroke();
+            }
+
+            // Draw grid lines along Y-axis
+            for (let i = 0; i <= num_lines_y; i++) {
+                ctx.beginPath();
+                ctx.lineWidth = 1;
+
+                // If line represents Y-axis draw in different color
+                if (i === Math.floor(num_lines_y / 2)) {
+                    ctx.strokeStyle = "#000000";
+                } else {
+                    ctx.strokeStyle = "#e9e9e9";
+                }
+
+                if (i === num_lines_y) {
+                    ctx.moveTo(gridSize * i, 0);
+                    ctx.lineTo(gridSize * i, containerHeight);
+                } else {
+                    ctx.moveTo(gridSize * i + 0.5, 0);
+                    ctx.lineTo(gridSize * i + 0.5, containerHeight);
+                }
+                ctx.stroke();
+            }
+
+            // Додати підпис осі X
+            ctx.fillStyle = "#000000";
+            ctx.font = "14px Arial";
+            ctx.fillText("X", canvas.width - 20 , canvas.height / 2 + 10);
+
+            // Додати підпис осі Y
+            ctx.fillText("Y", canvas.width / 2 - 5, 20);
+
+            // Додати підпис одиничного відрізка на X-осі
+            ctx.fillStyle = "#000000";
+            ctx.font = "14px Arial";
+            ctx.fillText("20", canvas.width / 2 + gridSize - 25, canvas.height / 2 + 8);
+
+            // Додати підпис одиничного відрізка на Y-осі
+            ctx.fillText("20", canvas.width / 2 - 25, canvas.height / 2 - gridSize);
+
+            // Позначити точку початку координат
+            ctx.fillText("(0, 0)", canvas.width / 2 -55, canvas.height / 2 + 8);
+
+            ctx.translate(0, canvas.height);
+            ctx.scale(1, -1);
+            ctx.translate(canvas.width/2 - 8,canvas.height/2+ 12)
+
+        </script>
+    </div>
+
+
+
+    <div class="menu-container">
+        <form class="menu-functions-form">
+            <ul>
+                <li>
+                    <label for="inputFieldCoordinates">
+                        Введіть координати точок характеристичної ламаної для рекурсивноїІ побудови кривої у форматі: <br>(x1,y2);(x2,y2);...(xn,yn);
+                    </label>
+                    <input type="text" id="inputFieldCoordinates">
+                    <button class="build-button1">Побудувати</button>
+                </li>
+                <li>
+                    <label for="inputFieldParamCoord">Введіть точки для параметричної побудови кривої Без'є: </label>
+                    <input type="text" id="inputFieldParamCoord">
+                    <button class="build-button2">Побудувати</button>
+                </li>
+                <li>
+                    <label for="inputFieldAmountOfSpots">Вивести координати точок прямої (вкажіть к-сть): </label>
+                    <input type="number" id="inputFieldAmountOfSpots" min="0">
+                    <button class="display-dots-button">Вивести</button>
+                </li>
+                <li>
+                    <label>Значення поліномів Бернштейна Bin(t):</label>
+                    <label>
+                        <strong>i: </strong>
+                        <input type="number" class="inputFieldPolynom-i">
+                    </label>
+                    <label>
+                        <strong>t є [0;1]:</strong>
+                        <input type="text" class="inputFieldPolynom-t">
+                    </label>
+                    <button class="Calculate-value-of-polynoms">Обчислити</button>
+                </li>
+            </ul>
+        </form>
+    </div>
+</div>
+
+<script type="module" src="Lab%202%20KG.js"></script>
+<script type="module" src="Recursive.js"></script>
+<script type="module" src="Parametric.js"></script>
+</body>
+</html>
